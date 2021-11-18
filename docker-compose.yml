@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  zoneminder:
+    container_name: zoneminder
+    build: ./
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    privileged: true
+    shm_size: 512M
+    volumes:
+      - events:/var/cache/zoneminder/events
+      - mysql:/var/lib/mysql
+      - logs:/var/log/zoneminder
+volumes:
+  events:
+  mysql:
+  logs:
